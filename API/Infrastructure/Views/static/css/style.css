@@ -1,40 +1,12 @@
-*,
-:after,
-:before {
-    box-sizing: border-box;
-}
-
-* {
-    padding: 0;
-    margin: 0;
-}
-
 html,
 body {
     font-family: Verdana, sans-serif;
     font-size: 16px;
     line-height: 1.5;
-}
-
-header {
-    background-color: DimGray;
-    color: white;
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-button,
-.btn {
-    border: 1px solid black;
-    border-radius: 0;
-    background-color: white;
-    color: dimgray;
-    padding: 4px 8px;
+    background-color: var(--bs-light);
 }
 
 dialog {
-    top: 0;
-    margin: 0px auto;
     width: 100%;
     height: 100vh;
     border: 0px;
@@ -45,43 +17,46 @@ dialog .card {
     margin-top: 50px;
 }
 
-.card {
-    border: 1px solid black;
+fieldset {
+    border: 1px solid var(--bs-dark);
+    background-color: white;
 }
 
-legend.card-title {
+legend {
     margin-left: -6px;
-}
-.card-title {
-    background-color: black;
-    color: white;
-    border: 0px solid black;
+    margin-top: -24px;
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+    border: 0px;
     padding: 4px 8px;
+    /*
+    border: 0 solid gray;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    */
 }
 
-.card-main menu {
+fieldset menu {
     list-style: none;
 }
 
-.card-main {
-    padding: 4px 8px;
+fieldset menu li a {
+    text-decoration: none;
 }
 
-.card.center {
+aside fieldset {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 25px;
     width: 250px;
 }
 
-.border-0 {
-    border-width: 0px;
+board-view {
+    height: calc(100vh - 80px);
+    overflow: hidden;
 }
 
-.flex-main aside {
-    flex-basis: 200px;
-    padding-right: 8px;
-}
-post-form{
+post-form {
     width: 100%;
     margin-bottom: 8px;
     display: flex;
@@ -90,73 +65,10 @@ post-form{
     justify-content: flex-end;
 }
 
-.flex-main section {
-    flex-basis: calc(100% - 200px);
-    padding-left: 8px;
-}
-
-.flex-main {
-    display: flex;
-    flex-direction: row;
-    align-content: flex-start;
-    align-items: stretch;
-    height: calc(100vh - 120px);
-}
-
-.post {
-    background-color: LightGray;
-    display: flex;
-    flex-direction: row;
-    align-content: flex-start;
-    align-items: stretch;
-    flex-basis: auto;
-    flex-wrap: wrap;
-    padding: 4px 8px;
-}
-
-.post img {
-    flex-basis: 30%;
-    max-width: 200px;
-}
-
-.post article {
-    flex-basis: 100%;
-
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-basis: auto;
-    flex-wrap: wrap;
-    padding: 4px 8px;
-}
-
-.form-item {
-    margin: 4px 0;
-    border: 1px solid black;
-    color: black;
-    padding: 4px;
-}
-
-.form-item:hover,
-.form-item:focus-visible {
-    outline: 0;
-    background-color: LightGray;
-}
-
-.form footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.w100 {
+    width: 100%;
 }
 
 .hidden {
     display: none
-}
-.footer-page{
-    text-align: center;
-    background-color: dimgray;
-    color: whitesmoke;
 }

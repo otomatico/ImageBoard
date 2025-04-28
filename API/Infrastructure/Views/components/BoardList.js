@@ -12,26 +12,27 @@ export default class BoardList extends HTMLElement {
         let header = document.createElement("legend");
         let body = document.createElement("menu");
 
-        card.className="card";
-        header.className="card-title";
-        header.textContent="Board"
-        body.className="card-main";
+        header.textContent = "Board";
+        header.className = "fs-5";
+        body.className = "list-group list-group-flush w100";
+
         card.appendChild(header);
         card.appendChild(body);
         this.appendChild(card);
         let list = await this.#Get();
-        list.forEach(item=>{
+        list.forEach(item => {
             let li = document.createElement("li")
             let a = document.createElement("a")
-            a.setAttribute("href",`post/${item.id}`)
-            a.textContent = item.name;
+            a.setAttribute("href", `board/${item.name}`)
+            a.textContent = item.description;
+            li.className = "list-group-item";
             li.appendChild(a);
             body.appendChild(li);
         });
     }
 
-    async #Get(){
-        const url =`${$global.url_api}/Board/GetAll`
+    async #Get() {
+        const url = `${$global.url_api}/Board/GetAll`
         const response = await API.get(url);
         return response.json();
     }

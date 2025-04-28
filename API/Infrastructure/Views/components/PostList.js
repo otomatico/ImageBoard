@@ -1,14 +1,6 @@
 import API from '../services/API_Fetch.js'
 import $global from '../global.js'
 
-const html=`
-<figure class="post">
-    <img src="assets/none.png" />
-    <figcaption>None Test Image</figcaption>
-    <article>
-        Lorem ipsum recusive mode
-    </article>
-</figure>`
 export default class PostList extends HTMLElement {
 
     constructor() {
@@ -17,33 +9,38 @@ export default class PostList extends HTMLElement {
     async connectedCallback() {
         this.innerHTML = '';
         let list = await this.#GetTree();
-        let html = list.map((item)=>{
-            let items = item.posts.map(({subject,thumb_path,message})=>
-                this.#CreateItem(subject,thumb_path,message)
+        let html = list.map((item) => {
+            let items = item.posts.map(({ id, subject, thumb_path, message }) => {
+                let text = message.length > 200 ? message.slice(0, 197) + '...' : message;
+                return this.#CreateItem(id, subject, thumb_path, text);
+            }
             );
-            return this.#CreateBlock(item.subject,items.join(""));
+            return this.#CreateBlock(item.subject, items.join(""));
         });
-        this.insertAdjacentHTML( 'beforeend', html.join("") );
+        this.insertAdjacentHTML('beforeend', html.join(""));
     }
 
-    #CreateBlock(subject,body){
+    #CreateBlock(subject, body) {
         return `
-<div class="card border-0">
-    <h3 class="card-title">${subject}</h3>
-    <article class="card-main">${body}</article>
+<div class="card">
+    <h3 class="card-header">${subject}</h3>
+    <article class="card-body d-flex d-flex-column">${body}</article>
+</div>`;
+
+    }
+    #CreateItem(id, subject, thumb_path, message) {
+        return `
+<div class="d-flex" >
+    <img src="./static/${thumb_path}" class="rounded-start m-2" style="height:100px; width:200px;"/>
+    <div>
+        <span class="fs-5">${subject}</span> <a href="/post/follow/${id}" class="">[more]</a>
+        <blockquote class="fs-6 word-wrap">${message.slice(7)}</blockquote>
+    </div>        
 </div>`;
     }
-    #CreateItem(subject,thumb_path,message){
-        return `
-<figure class="post">
-    <img src="./static/${thumb_path}" />
-    <figcaption>${subject}</figcaption>
-    <article>${message}</article>
-</figure>`;
-    }
 
-    async #GetTree(id=1){
-        const url =`${$global.url_api}/thread/treebyboard/${id}`
+    async #GetTree(id = 1) {
+        const url = `${$global.url_api}/thread/treebyboard/${id}`
         const response = await API.get(url);
         return response.json();
     }

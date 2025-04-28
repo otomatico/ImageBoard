@@ -19,4 +19,4 @@ try {
 }
 
 //php -S localhost:4321 index.php ->Api
-//php -S localhost:8001 -t.\Infrastructure\View\ ->Web
+//php -S localhost:4200 -t.\Infrastructure\Views\ ->Web

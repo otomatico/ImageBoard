@@ -58,3 +58,5 @@ php -S localhost:8001 -t.\Infrastructure\View\
 │
 └── 📄index.php
 ```
+
+![DDD](ArquitectureHexagonal.png)
