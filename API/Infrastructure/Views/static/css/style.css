@@ -55,7 +55,7 @@ board-view {
     height: calc(100vh - 80px);
     overflow: hidden;
 }
-
+thread-form,
 post-form {
     width: 100%;
     margin-bottom: 8px;

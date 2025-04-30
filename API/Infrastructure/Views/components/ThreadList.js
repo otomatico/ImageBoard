@@ -1,7 +1,7 @@
 import API from '../services/API_Fetch.js'
 import $global from '../global.js'
 
-export default class PostList extends HTMLElement {
+export default class ThreadList extends HTMLElement {
 
     constructor() {
         super()
@@ -39,11 +39,12 @@ export default class PostList extends HTMLElement {
 </div>`;
     }
 
-    async #GetTree(id = 1) {
-        const url = `${$global.url_api}/thread/tree/${id}`
+    async #GetTree(boardId = 1,currentPage = 1,pageSize = 10) {
+        const url = `${$global.url_api}/thread/${boardId}/${currentPage}/${pageSize}`;
+        //const url = `${$global.url_api}/thread/${boardId}`
         const response = await API.get(url);
         return response.json();
     }
 }
 
-window.customElements.define("post-list", PostList);
+window.customElements.define("thread-list", ThreadList);

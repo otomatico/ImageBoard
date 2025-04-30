@@ -2,6 +2,7 @@
 include_once("./Infrastructure/Services/functions.php");
 include_once("./Infrastructure/Services/config.php");
 
+//Obsolete
 class Core
 {
     private $directories;

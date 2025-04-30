@@ -20,7 +20,12 @@ function Ok($obj = null, $typeMine = null)
     }
     die();
 }
-
+function View($viewfileHtml)
+{
+    header("Content-type:text/html");
+    include $viewfileHtml;    
+    die();
+}
 function NotAuthorize($msg = null)
 {
     header('HTTP/1.1 401 Not Authorize');

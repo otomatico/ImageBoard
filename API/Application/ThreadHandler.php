@@ -18,4 +18,15 @@ class ThreadHandler
         }
         return $threads;
     }
+    public function GetPaginedByBoard($boardId,$currentPage,$pageSize)
+    {
+        $Total =  $this->thread->GetTotalByBoard($boardId);
+        $threads =  $this->thread->GetPaginedByBoard($boardId,$currentPage,$pageSize);
+        foreach ($threads as $item) {
+            $item->total_posts = $this->post->GetTotalByThread($item->id);
+            $item->posts = $this->post->GetPaginedByThread($item->id, 1, 3);
+        }
+        $pagined = new Pagined(new PageInfo($currentPage,$pageSize,$Total),$threads);
+        return $pagined ;
+    }
 }
