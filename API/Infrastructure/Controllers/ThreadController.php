@@ -7,10 +7,16 @@ class ThreadController
         global $core;
         $this->handler =  new ThreadHandler();
     }
-    public function TreeByBoard($boardId, $currentPage, $pageSize)
+    public function TreeByBoard($boardName, $currentPage, $pageSize)
     {
         //$model = $this->handler->GetTreeByBord($boardId);
-        $model = $this->handler->GetPaginedByBoard($boardId, $currentPage, $pageSize);
+        $model = $this->handler->GetPaginedByBoard($boardName, $currentPage, $pageSize);
+        JSON($model);
+    }
+    public function GetByThread($boardId, $currentPage, $pageSize)
+    {
+        //$model = $this->handler->GetTreeByBord($boardId);
+        $model = $this->handler->GetPaginedByBoard($boardName, $currentPage, $pageSize);
         JSON($model);
     }
 }

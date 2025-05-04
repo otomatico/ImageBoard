@@ -16,15 +16,15 @@ class PostRepository
         $this->db = $GLOBALS["Database"];
     }
 
-    public function GetByThead($id)
+    public function GetByThead($threadId)
     {
         try {
-            $param = [':cells' => $this->_cells, ':thread_id' => $id];
+            $param = [':cells' => $this->_cells, ':thread_id' => $threadId];
             $query = str_template($this->queries['GetByThread'], $param);
             $stm = $this->db->query($query);
             return $stm->fetchAll(PDO::FETCH_CLASS, "post");
         } catch (Exception $e) {
-            die($e->getMessage());
+            throw ("Fallo en " . __METHOD__ . "(" . __CLASS__ . ") =>" . $e->getMessage());
         }
     }
     public function GetTotalByThread($id): int

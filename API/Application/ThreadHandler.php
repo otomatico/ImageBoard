@@ -2,10 +2,12 @@
 
 class ThreadHandler
 {
+    private BoardRepository $board;
     private ThreadRepository $thread;
     private PostRepository $post;
     public function __construct()
     {
+        $this->board =  new BoardRepository();
         $this->thread =  new ThreadRepository();
         $this->post =  new PostRepository();
     }
@@ -18,14 +20,17 @@ class ThreadHandler
         }
         return $threads;
     }
-    public function GetPaginedByBoard($boardId,$currentPage,$pageSize)
+    public function GetPaginedByBoard($boardName,$currentPage,$pageSize)
     {
-        $Total =  $this->thread->GetTotalByBoard($boardId);
-        $threads =  $this->thread->GetPaginedByBoard($boardId,$currentPage,$pageSize);
+        $boardItem =  $this->board->GetByName($boardName)[0];
+        $Total =  $this->thread->GetTotalByBoard($boardItem->id);
+        $threads =  $this->thread->GetPaginedByBoard($boardItem->id,$currentPage,$pageSize);
+
         foreach ($threads as $item) {
             $item->total_posts = $this->post->GetTotalByThread($item->id);
             $item->posts = $this->post->GetPaginedByThread($item->id, 1, 3);
         }
+
         $pagined = new Pagined(new PageInfo($currentPage,$pageSize,$Total),$threads);
         return $pagined ;
     }

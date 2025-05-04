@@ -4,6 +4,7 @@ class BoardRepository
     public PDO $db;
     private $queries = array(
         "GetAll" => "SELECT id, name, description FROM boards;",
+        "GetByName" => "SELECT id, name, description FROM boards WHERE name =':name';",
         "Create" => "INSERT INTO `boards` VALUES (':name',':description',CURRENT_TIMESTAMP());"
     );
     public function __construct()
@@ -15,6 +16,17 @@ class BoardRepository
     {
         try {
             $stm = $this->db->query($this->queries['GetAll']);
+            return $stm->fetchAll(PDO::FETCH_CLASS, "board");
+        } catch (Exception $e) {
+            throw ("Fallo en " . __METHOD__ . "(" . __CLASS__ . ") =>" . $e->getMessage());
+        }
+    }
+    public function GetByName($name)
+    {
+        try {
+            $param = array(':name' => $name);
+            $query = str_template($this->queries['GetByName'], $param);
+            $stm = $this->db->query($query);
             return $stm->fetchAll(PDO::FETCH_CLASS, "board");
         } catch (Exception $e) {
             throw ("Fallo en " . __METHOD__ . "(" . __CLASS__ . ") =>" . $e->getMessage());

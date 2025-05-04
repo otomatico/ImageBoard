@@ -1,5 +1,5 @@
-import API from '../services/API_Fetch.js'
-import $global from '../global.js'
+import API from '../../services/API_Fetch.js'
+import $global from '../../global.js'
 
 export default class BoardList extends HTMLElement {
 
@@ -23,7 +23,7 @@ export default class BoardList extends HTMLElement {
         list.forEach(item => {
             let li = document.createElement("li")
             let a = document.createElement("a")
-            a.setAttribute("href", `board/${item.name}`)
+            a.setAttribute("href", `/board/${item.name}`)
             a.textContent = item.description;
             li.className = "list-group-item";
             li.appendChild(a);
