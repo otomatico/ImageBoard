@@ -33,11 +33,11 @@ export default class PostView extends HTMLElement {
 
     async #render() {
         let list = await this.#GetPost(this.#id);
-        let html = list.map(({ id, subject, thumb_path, message }) => {
+        let html = list.map(({ id, subject, thumb_path, message }, index) => {
             message = message.length > 200 ? message.slice(0, 197) + '...' : message;
             let post = new PostItem();
             post.classList.add("col-12")
-            post.dataset['json'] = JSON.stringify({ id, subject, thumb_path, message });
+            post.dataset['json'] = JSON.stringify({ id: null, subject, thumb_path, message });
             return post;
         });
         html.forEach(item => this.appendChild(item));

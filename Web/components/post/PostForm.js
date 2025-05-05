@@ -42,6 +42,7 @@ export default class PostForm extends HTMLElement {
         cancelButton.addEventListener("click", function () {
             postDialog.close();
         });
+        this.classList.add("formElement");
     }
 
     async #Post() {

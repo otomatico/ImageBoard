@@ -3,7 +3,7 @@ const html = `
 <dialog id="threadDialog">
     <div class="d-flex justify-content-center mt-4">
         <fieldset>
-            <legend>Add Image</legend>
+            <legend>Add Thread</legend>
             <form class="card border-0" method="dialog">
                 <div class="card-body">
                     <input class="form-control mb-2" type="text" name="title" placeholder="Thread Name" />
@@ -43,6 +43,7 @@ export default class ThreadForm extends HTMLElement {
         cancelButton.addEventListener("click", function () {
             threadDialog.close();
         });
+        this.classList.add("formElement")
     }
 
     async #Thread() {

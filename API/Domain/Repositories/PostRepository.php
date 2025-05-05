@@ -45,7 +45,7 @@ class PostRepository
             $param = [':cells' => $this->_cells, ':thread_id' => $threadId, ':currentPage' => $currentPage, ':pageSize' => $pageSize];
             $query = str_template($this->queries['GetPaginedByThread'], $param);
             $stm = $this->db->query($query);
-            return $stm->fetchAll(PDO::FETCH_CLASS, "thread");
+            return $stm->fetchAll(PDO::FETCH_CLASS, "post");
         } catch (Exception $e) {
             throw ("Fallo en " . __METHOD__ . "(" . __CLASS__ . ") =>" . $e->getMessage());
         }

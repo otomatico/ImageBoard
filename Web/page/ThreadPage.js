@@ -7,13 +7,13 @@ export default class ThreadView extends HTMLElement {
         super()
     }
     async connectedCallback() {
-        this.className += "row m-0";
+        this.className += " flex-column";
         let key = window.location.href.split('/').pop()
         const form = new ThreadForm();
         const thread = new ThreadList();
         thread.setAttribute("key", key);
-        form.classList.add("col-12")
-        thread.classList.add("col-12")
+        
+        thread.classList.add("p-2")
         this.appendChild(form);
         this.appendChild(thread);
     }

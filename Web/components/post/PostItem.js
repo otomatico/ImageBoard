@@ -10,11 +10,12 @@ export default class PostItem extends HTMLElement {
     }
 
     #CreateItem(id, subject, thumb_path, message) {
+        let link = !id ? '' : `<a href="/post/follow/${id}">[more]</a>`;
         return `
 <div class="d-flex" >
     <img src="/static/${thumb_path}" class="rounded-start m-2" style="height:100px; width:200px;"/>
     <div>
-        <span class="fs-5">${subject}</span> <a href="/post/follow/${id}" class="">[more]</a>
+        <span class="fs-5">${subject}</span> ${link}
         <blockquote class="fs-6 word-wrap">${message}</blockquote>
     </div>        
 </div>`;

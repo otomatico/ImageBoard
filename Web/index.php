@@ -7,4 +7,5 @@ if ($path == "/") {
     die;
 }
 include __DIR__ . $path;
+//...ImageBoard> php -S localhost:4200 -t.\Web\ ->Web
 ?>

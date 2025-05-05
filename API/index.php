@@ -31,5 +31,5 @@ try {
     echo  $exception->getMessage();
 }
 
-//php -S localhost:4321 index.php ->Api
-//php -S localhost:4200 -t.\Infrastructure\Views\ ->Web
+//...ImageBoard\API> php -S localhost:4321 index.php ->Api
+//    ...ImageBoard> php -S localhost:4200 -t.\Web\ ->Web

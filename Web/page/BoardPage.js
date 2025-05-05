@@ -1,11 +1,9 @@
 const html = `
 <fieldset style="width:90%">
-    <legend class="fs-5">Que es ESTO</legend>
+    <legend class="fs-5">What is THIS?</legend>
     <div class="fs-6 m-2">
-        <p>ESTO es un sencillo foro de imágenes donde cualquiera puede publicar comentarios y compartir imágenes.
-        Hay foros dedicados a diversos temas, desde animación y cultura japonesa hasta videojuegos, música y fotografía. No es necesario registrarse para participar en la comunidad.
-        ¡Haz clic en el foro que te interese y empieza a participar!</p>
-        <p>Asegúrate de leer las reglas antes de publicar y lee las preguntas frecuentes si quieres saber más sobre el uso del sitio.</p>
+        <p>THIS is a simple image forum where anyone can post comments and share images. There are forums dedicated to a variety of topics, from animation and Japanese culture to video games, music, and photography. No registration is required to participate in the community. ¡Click on the forum that interests you and start participating!</p>
+        <p>Be sure to read the rules before posting and read the FAQ if you want to learn more about using the site.</p>
     </div>
 </fieldset>`;
 

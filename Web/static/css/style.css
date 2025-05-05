@@ -60,8 +60,7 @@ aside fieldset {
     overflow: hidden;
 }
 
-thread-form,
-post-form {
+.formElement {
     width: 100%;
     margin-bottom: 8px;
     display: flex;
