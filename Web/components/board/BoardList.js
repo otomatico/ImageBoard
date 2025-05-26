@@ -32,7 +32,7 @@ export default class BoardList extends HTMLElement {
     }
 
     async #Get() {
-        const url = `${$global.url_api}/Board/GetAll`
+        const url = `${$global.url_api}/board/getAll`
         const response = await API.get(url);
         return response.json();
     }

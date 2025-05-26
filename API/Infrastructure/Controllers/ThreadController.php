@@ -13,10 +13,14 @@ class ThreadController
         $model = $this->handler->GetPaginedByBoard($boardName, $currentPage, $pageSize);
         JSON($model);
     }
-    public function GetByThread($boardId, $currentPage, $pageSize)
+    public function GetByThread($boardName, $currentPage, $pageSize)
     {
         //$model = $this->handler->GetTreeByBord($boardId);
         $model = $this->handler->GetPaginedByBoard($boardName, $currentPage, $pageSize);
         JSON($model);
+    }
+    public function CreateThread($data){
+        var_dump($data);
+        Ok();
     }
 }

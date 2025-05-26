@@ -64,7 +64,8 @@ class Router{
     private function GetArguments(string $method, string $path,Route $route)
     {
         if (in_array($method, ["POST", "PUT"])) {
-            return json_decode(urldecode(file_get_contents("php://input")));
+            $buffer =  file_get_contents("php://input");
+            return json_decode(urldecode($buffer));
         }
         //$path = explode('/',$path);
         //if(count($path)>2){
@@ -85,9 +86,11 @@ class Router{
             //$controller->$methodName($args);
             //die;
         }
-
-        //call_user_func($fn, $args);    
-        call_user_func_array($fn, $args);    
+        if(is_array($args)){
+            call_user_func_array($fn, $args);    
+        }else{
+            call_user_func($fn, $args); 
+        }
         die;
     }
 

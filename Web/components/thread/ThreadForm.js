@@ -1,3 +1,6 @@
+import API from '../../services/API_Fetch.js'
+import $global from '../../global.js'
+
 const html = `
 <button class="btn btn-outline-dark" id="createThreadDialog"><i class="bi bi-image-fill"></i> Add Thread</button>
 <dialog id="threadDialog">
@@ -13,7 +16,7 @@ const html = `
                 </div>
                 <footer class="card-footer d-flex justify-content-between">
                     <label class="btn btn-outline-dark" for="image" title="Open Image"><i class="bi bi-image-fill"></i> Image</label>
-                    <input type="file" class="hidden" id="image" name="image" />
+                    <!--input type="file" class="hidden" id="image" name="image" /-->
                     <span class="separate">&nbsp;</span>
                     <div>
                         <button class="btn btn-outline-secondary" id="cancel" type="reset"><i class="bi bi-x-lg"></i> Cancel</button>
@@ -25,31 +28,63 @@ const html = `
     </div>
 </dialog>`;
 export default class ThreadForm extends HTMLElement {
-
+    //#dialog = {}
     constructor() {
         super()
     }
     async connectedCallback() {
-        this.innerHTML = html;
-        var updateButton = document.getElementById("createThreadDialog");
-        var cancelButton = document.getElementById("cancel");
-        var threadDialog = document.getElementById("threadDialog");
+        await this.render()
+        this.setupEventListener()
+        this.classList.add("formElement")
+    }
+    async #Create(buffer) {
+        const url = `${$global.url_api}/thread/create`
+        const response = await API.post(url, JSON.stringify(buffer));
+        console.log(await response.text())
+    }
 
+    async render() {
+        //let divTemplate =  document.createElement("template")
+        let divTemplate =  document.createElement("div")
+        document.body.appendChild(divTemplate)
+        divTemplate.innerHTML = html;        
+        //this.append(divTemplate.content.cloneNode(true));
+        this.append(divTemplate);
+    }
+    setupEventListener() {
+        var threadDialog = this.querySelector("#threadDialog");
+        var updateButton = this.querySelector("#createThreadDialog");
+        var cancelButton = threadDialog.querySelector("#cancel");
+        var submitButton = threadDialog.querySelector("[type=submit]")
+        threadDialog.returnValue = false;
+        let Create = this.#Create.bind(this)
+
+        submitButton.addEventListener("click", async function () {
+            let buffer = {};
+            threadDialog.querySelectorAll("[name]").forEach(input => {
+                if (input.type == "file") {
+                    buffer[input.name] = input.files[0];
+                } else {
+                    buffer[input.name] = input.value;
+                }
+            })
+            await Create(buffer);
+            threadDialog.returnValue = true;
+        });
+
+        threadDialog.addEventListener("close", function () {
+            alert(threadDialog.returnValue);
+        });
+        //threadDialog.querySelector("[for=image]").addEventListener("click",function(){
+        //    document.querySelector("#image").click();
+        //})
         updateButton.addEventListener("click", function () {
             threadDialog.showModal();
         });
 
-        // Form cancel button closes the dialog box
         cancelButton.addEventListener("click", function () {
             threadDialog.close();
         });
-        this.classList.add("formElement")
-    }
-
-    async #Thread() {
-        const url = "/Board/GetAll"
-        const response = await fetch(url);
-        return response.json();
     }
 }
 

@@ -2,7 +2,7 @@
 //CORS Activate
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS ");
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Max-Age: 86400');    // cache for 1 day
 try {

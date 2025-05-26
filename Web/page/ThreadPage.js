@@ -17,6 +17,19 @@ export default class ThreadView extends HTMLElement {
         this.appendChild(form);
         this.appendChild(thread);
     }
+    async Create(){
+        /*
+        var input = document.querySelector('input[type="file"]')
+        var data = new FormData()
+        data.append('file', input.files[0])
+        data.append('user', 'hubot')
+
+        fetch('/avatars', {
+        method: 'POST',
+        body: data
+        })
+        */
+    }
 }
 
 window.customElements.define("thread-page", ThreadView);

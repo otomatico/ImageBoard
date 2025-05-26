@@ -26,9 +26,9 @@ En la carpeta ```migration``` tienes un dump de las tablas, la base de datos se 
 Para arrancar los servicios WEBs
 ```bash
 #API
-php -S localhost:4321 index.php
+php -S localhost:4321 -t.\API\ -f.\API\index.php 
 #Web
-php -S localhost:8001 -t.\Infrastructure\View\ 
+php -S localhost:4200 -t.\Web\
 ```
 
 ### 🧶Organizacion de carpetas
